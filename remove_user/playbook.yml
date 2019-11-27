@@ -1,0 +1,12 @@
+---
+- name: remove_user
+  hosts: es_servers_bastion
+  become: yes
+
+  tasks:
+
+  - name: Remove the user
+    user:
+      name: roman.kudoyarov
+      state: absent
+      remove: yes
