@@ -1,0 +1,17 @@
+---
+- name: add_user
+  hosts: es_servers_bastion
+  become: yes
+  vars:
+    createuser: 'a.pukhov'
+    publickey_path: '/home/niksam/Documents/ansible/add_user/id_rsa.pub'
+
+  tasks:
+  - name: Setup | create user
+    command: useradd -m {{ createuser }} creates=/home/{{ createuser }}
+
+  - name: Setup | authorized key upload
+    authorized_key: user={{ createuser }}
+      key="{{ lookup('file', '/home/niksam/Documents/ansible/add_user/id_rsa.pub') }}"
+      path='/home/{{ createuser }}/.ssh/authorized_keys'
+      manage_dir=no
