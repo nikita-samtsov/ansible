@@ -1,0 +1,14 @@
+---
+- name: remove_user
+  hosts: pl_servers_mysql
+  become: yes
+
+  tasks:
+
+  - name: remove_user
+    shell: mysql -e "DROP USER IF EXISTS '{{ item }}'@'%'"
+    with_items:
+      - o.filiutsich
+      - v.nikulin
+      - c.oliveira
+      - k.sulik

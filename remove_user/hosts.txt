@@ -11,6 +11,18 @@ ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q 5.188.148.9"'
 ansible_ssh_private_key_file = /home/niksam/.ssh/work_ssh_idf/id_rsa
 ansible_user = n.samtsov
 
+[es_servers_mysql:vars]
+ansible_ssh_private_key_file = /home/niksam/.ssh/work_ssh_idf/id_rsa
+ansible_user = nikita.samtsov
+
+[pl_servers:vars]
+ansible_ssh_private_key_file = /home/niksam/.ssh/work_ssh_idf/id_rsa
+ansible_user = nikita.samtsov
+
+[pl_servers_mysql:vars]
+ansible_ssh_private_key_file = /home/niksam/.ssh/work_ssh_idf/id_rsa
+ansible_user = nikita.samtsov
+
 [kz_servers]
 37.221.207.243
 188.246.235.188
@@ -124,3 +136,41 @@ ansible_user = n.samtsov
 100.100.34.28
 100.100.34.251
 100.100.34.250
+
+[es_servers_mysql]
+52.57.229.131
+92.223.88.88
+52.28.63.49
+92.223.88.95
+92.223.88.101
+
+
+[pl_servers]
+2.223.88.66
+52.59.152.76
+52.57.245.79
+18.195.233.98
+52.29.55.76
+92.223.88.62
+52.57.189.138
+92.223.88.91
+92.223.88.92
+92.223.88.93
+52.29.179.155
+92.223.88.62
+52.29.120.100
+52.29.179.155
+92.223.88.59
+52.57.74.245
+92.223.88.60
+92.223.88.65
+92.223.88.64
+52.28.161.148
+92.223.88.66
+92.223.88.63
+52.31.129.213
+10.1.1.36
+
+[pl_servers_mysql]
+92.223.88.60
+52.57.229.131

@@ -1,12 +1,19 @@
 ---
 - name: remove_user
-  hosts: es_servers_bastion
+  hosts: pl_servers
   become: yes
 
   tasks:
 
   - name: Remove the user
     user:
-      name: roman.kudoyarov
+      name: "{{ item }}"
       state: absent
       remove: yes
+    with_items:
+      - a.shevchuk
+      - r.kozin
+      - o.filiutsich
+      - s.makarevich
+      - e.rybak
+      - s.ambroziak
