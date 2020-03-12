@@ -1,0 +1,8 @@
+---
+- name: add_user
+  hosts: sl_es_old
+  become: yes
+
+  tasks:
+  - name: ping
+    ping:

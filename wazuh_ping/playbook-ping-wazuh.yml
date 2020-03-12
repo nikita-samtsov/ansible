@@ -1,0 +1,12 @@
+---
+- name: add_user
+  hosts: pl_prod
+  become: yes
+
+  tasks:
+
+  - shell: /etc/init.d/wazuh-agent status
+    register: status
+
+  - debug:
+      var: status

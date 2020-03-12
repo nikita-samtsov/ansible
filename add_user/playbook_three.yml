@@ -1,0 +1,27 @@
+---
+- name: add_user
+  hosts: mm_es_serv
+  become: yes
+  vars:
+    createuser: 'a.pukhov'
+    publickey_path: '/home/niksam/Documents/repo/ansible/keys/a.pukhov/id_rsa.pub'
+
+  tasks:
+  - name: Create a login user
+    user:
+     name: a.pukhov
+     groups: # Empty by default, here we give it some groups
+      - sudo
+     state: present
+     shell: /bin/bash       # Defaults to /bin/bash
+     system: no             # Defaults to no
+     createhome: yes        # Defaults to yes
+     home: /home/a.pukhov  # Defaults to /home/<username>
+
+  - name: Setup | authorized key upload
+    authorized_key:
+      user: a.pukhov
+      state: present
+      key: "{{ lookup('file', '/home/niksam/Documents/repo/ansible/keys/a.pukhov/id_rsa.pub') }}"
+      path: '/home/a.pukhov/.ssh/authorized_keys'
+      manage_dir: no
