@@ -1,0 +1,37 @@
+---
+- name: check_files
+  hosts: es_servers
+  become: yes
+
+  tasks:
+  - stat:
+      path: /usr/sbin/rebuild-iptables
+    register: st
+
+  - debug:
+      msg: "islnk isn't defined (path doesn't exist)"
+    when: st.stat.exists == False
+
+  - stat:
+      path: /etc/iptables/general
+    register: st
+
+  - debug:
+      msg: "islnk isn't defined (path doesn't exist)"
+    when: st.stat.exists == False
+
+  - stat:
+      path: /etc/iptables.d/deny_123_port
+    register: st
+
+  - debug:
+      msg: "islnk isn't defined (path doesn't exist)"
+    when: st.stat.exists == False
+
+  - stat:
+      path: /etc/network/if-pre-up.d/iptables_load
+    register: st
+
+  - debug:
+      msg: "islnk isn't defined (path doesn't exist)"
+    when: st.stat.exists == False

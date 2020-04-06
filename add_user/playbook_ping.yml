@@ -1,6 +1,6 @@
 ---
 - name: add_user
-  hosts: sl_es_old
+  hosts: mm 
   become: yes
 
   tasks:

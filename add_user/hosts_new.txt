@@ -1,0 +1,109 @@
+[mm:vars]
+ansible_ssh_private_key_file = /home/niksam/.ssh/work_ssh_idf/id_rsa
+ansible_user = nikita.samtsov
+
+[all_db:children]
+mmes_db
+sles_db
+
+[all_platform:children]
+mmes_platform
+sles_platform
+
+### <<ES>>
+[mm:children]
+es_other
+mmes
+sles
+
+[es_other]
+es-prod-mongo-backup-aws  ansible_ssh_host=54.171.62.254
+es-prod-aster-gc ansible_ssh_host=5.188.127.84
+es-prod-aster-genesis-gc ansible_ssh_host=192.168.2.212
+es-prod-aster-genesis2-gc ansible_ssh_host=192.168.2.213
+es-prod-subdomains-aws ansible_ssh_host=52.28.45.206
+
+### <<MMES>>
+[mmes:children]
+mmes_other
+mmes_db
+mmes_frontend
+mmes_backend
+mmes_platform
+
+[mmes_other]
+mmes-prod-elastic-aws ansible_ssh_host=18.184.208.63
+mmes-prod-zabbix-gc ansible_ssh_host=92.223.88.67
+mmes-prod-pmm-gc ansible_ssh_host=92.223.88.181
+mmes-prod-monitoring-aws ansible_ssh_host=52.59.228.193
+
+[mmes_frontend]
+mmes-prod-nginxwp-aws ansible_ssh_host=52.58.139.212
+
+[mmes_backend]
+mmes-prod-gfclient-aws ansible_ssh_host=52.28.129.91
+mmes-prod-gfadmin-aws ansible_ssh_host=3.120.157.68
+mmes-prod-gftasker-aws ansible_ssh_host=52.28.241.221
+
+[mmes_platform]
+mmes-prod-infra-aws ansible_ssh_host=54.93.237.239
+mmes-prod-deploy-aws ansible_ssh_host=54.93.246.133
+mmes-prod-n1-aws ansible_ssh_host=54.93.76.6
+mmes-prod-n2-aws ansible_ssh_host=52.57.203.148
+mmes-prod-n3-aws ansible_ssh_host=18.196.143.130
+mmes-prod-n4-aws ansible_ssh_host=3.122.137.42
+mmes-prod-n5-aws ansible_ssh_host=35.158.26.230
+
+[mmes_db]
+mmes-prod-mysql-slave-aws ansible_ssh_host=52.57.229.131
+mmes-prod-mysql-slave-risk-gc-new ansible_ssh_host=192.168.2.15
+mmes-prod-mysql-slave-risk-gc ansible_ssh_host=92.223.88.88
+mmes-prod-mysql-master-aws ansible_ssh_host=52.28.63.49
+mmes-prod-mongo-arbiter-aws ansible_ssh_host=54.154.110.168
+mmes-prod-mongo-master-aws ansible_ssh_host=52.17.227.225
+mmes-prod-mongo-slave-aws ansible_ssh_host=34.243.54.19
+mmes-prod-mongo-behavior-slave-aws ansible_ssh_host=54.93.47.245
+mmes-prod-mongo-master-behavior-aws ansible_ssh_host=18.197.248.254
+
+### <<SLES>>
+
+[sles:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q 5.188.148.9"'
+
+[sles:children]
+sles_backend
+sles_db
+sles_frontend
+sles_other
+sles_platform
+
+[sles_other]
+sles-prod-bastion-mad-gc ansible_ssh_host=100.100.34.254
+sles-prod-bind-mad-gc ansible_ssh_host=100.100.34.250
+sles-prod-zabbix-mad-gc ansible_ssh_host=100.100.34.251
+sles-prod-pmm-mad-gc ansible_ssh_host=100.100.34.28
+sles-prod-elk-mad-gc ansible_ssh_host=100.100.34.21
+sles-prod-elastic-mad-gc ansible_ssh_host=100.100.34.18
+sles-prod-monitoring-mad-gc ansible_ssh_host=100.100.34.20
+
+[sles_frontend]
+sles-prod-nginxwp-mad-gc ansible_ssh_host=100.100.34.10
+
+[sles_backend]
+sles-prod-gf-task-crm-mad-gc ansible_ssh_host=100.100.34.11
+
+[sles_platform]
+sles-prod-n1-mad-gc ansible_ssh_host=100.100.34.22
+sles-prod-n2-mad-gc ansible_ssh_host=100.100.34.23
+sles-prod-n3-mad-gc ansible_ssh_host=100.100.34.24
+sles-prod-n4-mad-gc ansible_ssh_host=100.100.34.25
+sles-prod-n5-mad-gc ansible_ssh_host=100.100.34.26
+sles-prod-infra-mad-gc ansible_ssh_host=100.100.34.19
+sles-prod-deploy-mad-gc ansible_ssh_host=100.100.34.17
+
+[sles_db]
+sles-prod-mysql-master-mad-gc ansible_ssh_host=100.100.34.14
+sles-prod-mysql-slave-mad-gc ansible_ssh_host=100.100.34.16
+sles-prod-mongo-master-mad-gc ansible_ssh_host=100.100.34.12
+sles-prod-mongo-slave-mad-gc ansible_ssh_host=100.100.34.13
+sles-prod-mongo-arbiter-mad-gc ansible_ssh_host=100.100.34.15

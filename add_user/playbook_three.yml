@@ -1,6 +1,6 @@
 ---
 - name: add_user
-  hosts: mm_es_serv
+  hosts: mm
   become: yes
   vars:
     createuser: 'a.pukhov'
